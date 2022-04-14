@@ -63,6 +63,7 @@ const MapComponent = ({ mapboxKey, className, dates }: Props) => {
               source: 'news-locations',
               filter: ['has', 'point_count'],
               layout: {
+                // @ts-ignore
                 'text-field': absoluteCount ? '{point_count_abbreviated}' : ["concat", ["to-string", ["/", ["round", ["*", ["/", ['get', 'point_count'], data.features.length], 10000]], 100]], "%"],
                 'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
                 'text-size': 12
@@ -79,6 +80,7 @@ const MapComponent = ({ mapboxKey, className, dates }: Props) => {
         source: 'news-locations',
         filter: ['has', 'point_count'],
         layout: {
+          // @ts-ignore
           'text-field': absoluteCount ? '{point_count_abbreviated}' : ["concat", ["to-string", ["/", ["round", ["*", ["/", ['get', 'point_count'], data.features.length], 10000]], 100]], "%"],
           'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
           'text-size': 12
@@ -103,12 +105,14 @@ const MapComponent = ({ mapboxKey, className, dates }: Props) => {
       >
         <Source
           id="news-locations"
+          // @ts-ignore
           type="geojson" data={data}
           cluster={true}
           clusterMaxZoom={14}
           clusterRadius={50}
         >
           <Layer {...clusterLayer} />
+          {/* @ts-ignore */}
           <Layer {...clusterCountLayer} />
           <Layer {...unclusteredPointLayer} />
         </Source>

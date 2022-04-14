@@ -21,7 +21,7 @@ const ClustersPage = () => {
         error: '\xa0Failed loading the locations 🤯'
       })
   }, [])
-
+  // @ts-ignore
   return <Layout title="Locations from CNN" dates={dates}>
     <MapComponent className="h-full rounded" mapboxKey={mapboxKey} dates={dates} />
   </Layout>
