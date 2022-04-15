@@ -3,7 +3,7 @@ import MapComponent from '../components/ClustersMap';
 import axios from 'axios'
 import { Date } from '../interfaces';
 import React, { useState, useEffect } from 'react';
-import { toast } from 'react-toastify';
+import toast, { Toaster } from 'react-hot-toast';
 
 const ClustersPage = () => {
   const [dates, setDates] = useState<Array<Date>>(undefined);
@@ -16,7 +16,7 @@ const ClustersPage = () => {
         setDates(response.data);
       })
       , {
-        pending: '\xa0Loading locations',
+        loading: '\xa0Loading locations',
         success: '\xa0Finished loading the locations👌',
         error: '\xa0Failed loading the locations 🤯'
       })
@@ -24,7 +24,8 @@ const ClustersPage = () => {
   // @ts-ignore
   return <Layout title="Locations from CNN" dates={dates}>
     <MapComponent className="h-full rounded" mapboxKey={mapboxKey} dates={dates} />
+    <Toaster position="bottom-center" />
   </Layout>
 }
 
-export default ClustersPage
+export default ClustersPage 

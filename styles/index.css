@@ -3,7 +3,17 @@
 @tailwind components;
 /* purgecss end ignore */
 @tailwind utilities;
+@tailwind apply;
 
-html, body, #__next, #__next>div:first-of-type  {
-    height: 100%
+@layer base {
+  html,
+  body, body > div {
+    @apply h-full;
   }
+}
+
+@layer components {
+  #__next, #__next>div:first-child {
+    @apply flex flex-col min-h-full;
+  }
+}
