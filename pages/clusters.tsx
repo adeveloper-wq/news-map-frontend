@@ -1,11 +1,17 @@
 import Layout from '../components/Layout'
-import MapComponent from '../components/ClustersMap';
+/* import MapComponent from '../components/ClustersMap'; */
 import axios from 'axios'
 import { Date } from '../interfaces';
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
+import dynamic from 'next/dynamic';
 
 const ClustersPage = () => {
+  const MapComponent = dynamic(() => import("../components/ClustersMap"), {
+    loading: () => <p>Loading...</p>,
+    ssr: false
+  });
+
   const [dates, setDates] = useState<Array<Date>>(undefined);
 
   let mapboxKey = process.env.NEXT_PUBLIC_REACT_APP_MAPBOX_ACCESS_TOKEN;
